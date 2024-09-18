@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  body {
+    font-family: "Open Sans", sans-serif;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+      url("/images/delhi.png");
+    background-position: center top;
+    background-size: auto 130vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: scroll;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 2rem;
+    padding-top: 100px;
+    text-align: center;
+  }
+
+  h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  p {
+    color: white;
+    font-size: 1.5rem;
+  }
+</style>
+
+<body>
+  <!-- Hero Section -->
+  <div class="container">
+    <h1>Weekly Holidays Information</h1>
+    <p>This is the Weekly Holidays listing! You can add more custom content here.</p>
+  </div>
+</body>
+

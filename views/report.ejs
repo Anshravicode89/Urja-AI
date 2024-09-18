@@ -1,0 +1,187 @@
+<% layout("/layouts/boilerplate") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports and Analytics</title>
+    
+    <!-- Main styles -->
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    
+    <!-- Chart.js for animated graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Include any additional stylesheets if needed -->
+    <style>
+        .container {
+            margin-top: 30px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #4dff6a;
+        }
+        .report-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .report-card img {
+            width: 70%; /* Adjusted size */
+            max-width: 350px; /* Ensure image doesn’t exceed this width */
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content Section -->
+    <div class="container">
+        <h1 class="section-title">Reports and Analytics</h1>
+        
+        <!-- Report Card 1: Overview -->
+        <div class="report-card">
+            <h3>Annual Load Overview</h3>
+            <img src="/images/load.jpg" alt="Annual Load Overview" />
+            <div class="chart-container">
+                <canvas id="annualLoadChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Report Card 2: Peak Load Analysis -->
+        <div class="report-card">
+            <h3>Peak Load Analysis</h3>
+            <img src="/images/peak.png" alt="Peak Load Analysis" />
+            <div class="chart-container">
+                <canvas id="peakLoadChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Report Card 3: Solar Generation vs. Demand -->
+        <div class="report-card">
+            <h3>Solar Generation vs. Demand</h3>
+            <img src="/images/solar.png" alt="Solar Generation vs. Demand" />
+            <div class="chart-container">
+                <canvas id="solarGenerationChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript for charts -->
+    <script>
+        // Annual Load Overview Chart
+        const annualLoadCtx = document.getElementById('annualLoadChart').getContext('2d');
+        new Chart(annualLoadCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Load (MW)',
+                    data: [120, 130, 110, 140, 160, 170, 150, 180, 190, 200, 180, 160],
+                    backgroundColor: 'rgba(77, 255, 106, 0.6)',
+                    borderColor: '#4dff6a',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `Load: ${tooltipItem.raw} MW`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                }
+            }
+        });
+
+        // Peak Load Analysis Chart
+        const peakLoadCtx = document.getElementById('peakLoadChart').getContext('2d');
+        new Chart(peakLoadCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Day', 'Night'],
+                datasets: [{
+                    label: 'Peak Load (MW)',
+                    data: [250, 150],
+                    backgroundColor: ['#00fa4f', '#00bfae'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `Peak Load: ${tooltipItem.raw} MW`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Solar Generation vs. Demand Chart
+        const solarGenCtx = document.getElementById('solarGenerationChart').getContext('2d');
+        new Chart(solarGenCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Morning', 'Afternoon', 'Evening'],
+                datasets: [{
+                    label: 'Solar Generation (MW)',
+                    data: [100, 300, 150],
+                    backgroundColor: '#00ffd5',
+                }, {
+                    label: 'Demand (MW)',
+                    data: [120, 280, 180],
+                    backgroundColor: '#ff66b2',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.dataset.label}: ${tooltipItem.raw} MW`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

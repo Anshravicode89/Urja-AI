@@ -1,0 +1,234 @@
+<% layout("/layouts/boilerplate")%>
+
+<style>
+  /* Existing styles */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter {
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  opacity: 0.7;
+  border-radius: 50px;
+  border: 1px solid transparent; 
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.filter:hover {
+  opacity: 1;
+  cursor: pointer;
+  color: #fe424d;
+  border-color: #fe424d;
+}
+
+.tax-info {
+  display: none;
+}
+
+.tax-switch {
+  border: 1px solid #fe424d;
+  border-radius: 1rem;
+  height: 3rem;
+  padding: 1rem;
+  margin-left: 5rem;
+  align-items: center;
+  display: flex;
+}
+
+/* Glowing Card Effect */
+.listing-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #fff; /* Set card background to white */
+  transition: transform 0.3s ease-in-out;
+}
+
+.listing-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Glow effect */
+.listing-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    #90ff6b, #00fa4f, #00ff99, #00ffd5, #ff66b2, #ffcc00
+  );
+  background-size: 600%;
+  filter: blur(8px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 12px;
+  z-index: 1; /* Ensure the glow effect appears on top */
+}
+
+@keyframes glowing {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+
+/* Show glow effect on hover */
+.listing-card:hover::before {
+  opacity: 1;
+}
+
+.listing-card:hover img {
+  opacity: 0.3; /* Dim the image to emphasize the glow effect */
+}
+
+/* Title styling */
+.card-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem; /* Adjust font size as needed */
+  color: #000;
+  z-index: 2; /* Ensure title is above the glow effect */
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+/* Show title on hover */
+.listing-card:hover .card-text {
+  opacity: 1;
+}
+
+@keyframes glowing {
+  0% {background-position: 0 0;}
+  50% {background-position: 400% 0;}
+  100% {background-position: 0 0;}
+}
+
+</style>
+
+<!-- Filter section remains unchanged -->
+
+<!-- Permanent Listings (Styled as Cards) -->
+<div class="row row-cols-lg-3 row-cols-md-3 mt-3 row-cols-sm-1">
+  <!-- Permanent Listing 1: Date -->
+  <a href="/date" class="listing-link">
+    <div class="card col listing-card">
+      <img class="card-img-top" src="/images/location.png" alt="Date" style="height: 20rem" />
+      <div class="card-body">
+        <p class="card-text">
+          <b>Location</b>
+        </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Permanent Listing 2: Time -->
+  <a href="/time" class="listing-link">
+    <div class="card col listing-card">
+      <img class="card-img-top" src="/images/time.png" alt="Time" style="height: 20rem" />
+      <div class="card-body">
+        <p class="card-text">
+          <b>Time</b>
+        </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Permanent Listing 3: Weather -->
+  <a href="/weather" class="listing-link">
+    <div class="card col listing-card">
+      <img class="card-img-top" src="/images/weather.png" alt="Weather" style="height: 20rem" />
+      <div class="card-body">
+        <p class="card-text">
+          <b>Weather</b>
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- Second Row of Permanent Listings -->
+<div class="row row-cols-lg-3 row-cols-md-3 mt-3 row-cols-sm-1">
+  <!-- Permanent Listing 4: Public Holidays -->
+  <a href="/public-holidays" class="listing-link">
+    <div class="card col listing-card">
+      <img class="card-img-top" src="/images/public-holidays.png" alt="Public Holidays" style="height: 20rem" />
+      <div class="card-body">
+        <p class="card-text">
+          <b>Public Holidays</b>
+        </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Permanent Listing 5: Weekly Holidays -->
+  <a href="/weekly-holidays" class="listing-link">
+    <div class="card col listing-card">
+      <img class="card-img-top" src="/images/weekly-holidays.png" alt="Weekly Holidays" style="height: 20rem" />
+      <div class="card-body">
+        <p class="card-text">
+          <b>Weekly Holidays</b>
+        </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Return to Home -->
+  <a href="/" class="listing-link">
+    <div class="card col listing-card">
+      <img class="card-img-top" src="/images/return.png" alt="Back to Home" style="height: 20rem" />
+      <div class="card-body">
+        <p class="card-text">
+          <b>Return to Home</b>
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- Existing Listings Loop (commented out) -->
+<!--
+<div class="row row-cols-lg-3 row-cols-md-3 mt-3 row-cols-sm-1">
+  <% for(let listing of allListings) { %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+      <div class="card col listing-card">
+        <img class="card-img-top" src="<%= listing.image.url %>" alt="listing_image" style="height: 20rem" />
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= listing.title %></b> <br>
+            &#8377; <%= listing.price %> /Night
+            <i class="tax-info">&nbsp;+18% GST</i>
+          </p>
+        </div>
+      </div>
+    </a>
+  <% } %>
+</div>
+-->
+
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+
+    for (info of taxInfo) {
+      if(info.style.display != "inline") {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
+      }
+    }
+  });
+</script>

@@ -1,0 +1,156 @@
+<link
+      rel="stylesheet"
+      data-purpose="Layout StyleSheet"
+      title="Web Awesome"
+      href="/css/app-wa-d53d10572a0e0d37cb8d614a3f177a0c.css?vsn=d"
+    >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css"
+      >
+<style>
+  .btn-search {
+    background-color: white;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+    border: 2px solid black; /* Add initial border color to make the transition smooth */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for background and border */
+}
+
+.btn-search:hover {    
+    color: #fff;
+    border-color: #fe424d; /* Change the border color to red on hover */
+}
+.search-inp{
+  border-radius: 25px;
+  padding: 0.5rem 3rem 0.5rem 3rem;
+  border: 2px solid black; /* Add initial border color to make the transition smooth */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for background and border */
+  margin-left: 500px;
+}
+.navbar-nav .search-container {
+    margin-left: 20px; /* Adjust this value to move the search bar to the right */
+  }
+.search-imp:hover{
+  border-color: #fe424d;
+}
+.center-heading {
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    border-right: 5px solid rgb(255, 255, 255);
+    width: 18%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation:
+      typing 5s steps(60) infinite,
+      cursor .4s step-end infinite alternate;
+
+}
+/*cursor blinking*/
+@keyframes cursor{
+  50% { border-color: transparent}
+}
+/*typing effect*/
+@keyframes typing {
+    0%, 100% { width: 0; }
+    50% { width: 18%; }
+  }
+
+/* Electric cursor blink */
+@keyframes electricCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Electric typing effect */
+@keyframes electricText {
+    0% { width: 0; }
+    40% { width: 18%; }
+    60%, 100% { width: 18%; }
+}
+
+/* Electric glitch effect */
+.center-heading h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  color: #000000; /* Electric green */
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  animation: electricGlow 2s infinite;
+}
+
+@keyframes electricGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  }
+  50% {
+    text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff;
+  }
+}
+
+
+
+</style>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><i class="fa-solid fa-lightbulb-on fa-flip-horizontal fa-xl" style="color: #4dff6a;"></i></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/listings">AI Solutions</a>
+          <a class="nav-link" href="/listings/new">Weather Integrate</a>
+          <a class="nav-link" href="/report">Reports & analytics</a>
+          <a class="nav-link" href="/contact">Contact Us</a>
+          <a class="nav-link" href="/reviews">Review</a>
+          
+        </div>
+        <div class="center-heading">
+          <h1>Urja AI</h1>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" action="/listings/search" method="get">
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search anything" aria-label="Search">
+            <button class="btn btn-search" type="submit"><i class="fa-sharp fa-regular fa-magnifying-glass-location fa-flip" style="color: #48e048;"></i></button>
+          </form>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <% if(!currUser) { %>
+          <a class="nav-link" href="/signup">Sign up</a>
+          <a class="nav-link" href="/login">Log In</a>
+          <% } %>
+          <% if(currUser) { %>
+          <a class="nav-link" href="/logout">Logout</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>

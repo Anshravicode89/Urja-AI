@@ -1,0 +1,141 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="details">
+            <i class="fa-regular fa-location-dot fa-bounce" style="color: #18bf1a;"></i>
+            <div class="topic">Address</div>
+            <div class="text-one">Chandigarh, India</div>
+            <div class="text-two">Sector 17</div>
+          </div>
+          <div class="details">
+            <i class="fa-duotone fa-solid fa-phone fa-shake" style="--fa-primary-color: #53b021; --fa-secondary-color: #53b021;"></i>
+            <div class="topic">Phone</div>
+            <div class="text-one">+91 94647 02113</div>
+            <div class="text-two">+91 76961 18178</div>
+          </div>
+          <div class="details">
+            <i class="fa-sharp-duotone fa-solid fa-envelopes fa-fade" style="--fa-primary-color: #52c33c; --fa-secondary-color: #52c33c;"></i>
+            <div class="topic">Email</div>
+            <div class="text-one">anshravi96@gmail.com</div>
+            <div class="text-two">lovishlarg@.com</div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="topic-text">Send us a message</div>
+          <p>If you have any queries, feel free to send us a message.</p>
+          <form id="contactForm">
+            <div class="mb-3 input-box">
+              <input type="text" name="name" class="form-control" placeholder="Enter your name" required />
+            </div>
+            <div class="mb-3 input-box">
+              <input type="email" name="email" class="form-control" placeholder="Enter your email" required />
+            </div>
+            <div class="mb-3 input-box message-box">
+              <textarea name="message" class="form-control" placeholder="Enter your message" required></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-success">Send Now</button>
+
+            </div>
+          </form>
+          <div id="messageBox"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    width: 85%;
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px 60px 30px 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .details {
+    margin: 14px;
+    text-align: center;
+  }
+  .details i {
+    font-size: 30px;
+    color: #008e18;
+    margin-bottom: 10px;
+  }
+  .right-side .input-box input,
+  .right-side .input-box textarea {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    background: #F0F1F8;
+    border-radius: 6px;
+    padding: 0 15px;
+  }
+  .message-box {
+    min-height: 110px;
+  }
+  .button input[type="submit"] {
+    color: #fff;
+    font-size: 18px;
+    background: #008e18;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .success-message, .error-message {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  .success-message {
+    color: green;
+  }
+  .error-message {
+    color: red;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    $('#contactForm').on('submit', function (e) {
+      e.preventDefault(); // Prevent form from reloading the page
+      $.ajax({
+        url: '/send-mail',
+        type: 'POST',
+        data: $(this).serialize(),
+        success: function () {
+          // Trigger Bootstrap alert for success
+          $('body').append(`
+            <div class="alert alert-success alert-dismissible fade show position-fixed" style="top: 10px; right: 10px; z-index: 9999;" role="alert">
+              Message Sent Successfully!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `);
+          $('#contactForm')[0].reset(); // Reset form after submission
+        },
+        error: function () {
+          // Trigger Bootstrap alert for error
+          $('body').append(`
+            <div class="alert alert-danger alert-dismissible fade show position-fixed" style="top: 10px; right: 10px; z-index: 9999;" role="alert">
+              Error sending message. Try again!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `);
+        },
+      });
+    });
+  });
+</script>

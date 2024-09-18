@@ -1,0 +1,261 @@
+<% layout("/layouts/boilerplate") %>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+      :root {
+        --primary-color: #00ffa2;
+        --text-dark: #333333;
+        --text-light: #ffffff33;
+        --extra-light: #f3f4f6;
+        --max-width: 1300px;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      input::placeholder {
+        color: var(--extra-light);
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        min-height: 100vh;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+          url("/images/delhi.png");
+        background-position: center top;
+        background-size: auto 130vh;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        overflow-y: scroll;
+      }
+
+      html {
+        background: linear-gradient(90deg, #32CD32, #1E90FF); /* Starting gradient color (green to blue) */
+        animation: gradient 3s infinite alternate; /* Infinite gradient animation */
+      }
+
+      @keyframes gradient {
+        0% {
+          background-color: #32CD32; /* Green */
+        }
+        100% {
+          background-color: #1E90FF; /* Blue */
+        }
+      }
+
+      nav {
+        width: 100%;
+        height: 60px;
+        background-color: rgba(255, 255, 255); /* Fixed header */
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--text-dark);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+      }
+
+      nav ul li a {
+        color: var(--text-dark);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column; /* Stack content vertically */
+        align-items: center;
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 2rem;
+        padding-top: 100px;
+      }
+
+      .container__left {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .container__left .content {
+        max-width: 600px;
+        display: grid;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .container__left .content h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+        color: var(--extra-light);
+        font-weight: 700;
+      }
+
+      .content p {
+        color: var(--extra-light); /* Keeping the general text as light */
+        font-size: 1.2rem;
+      }
+
+      .problem-statement p, 
+      .solution-overview p, 
+      .interactive-section p, 
+      .benefits-section p {
+        color: black; /* Changed to black for specific sections */
+      }
+
+      .btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .btns button {
+        padding: 0.8rem 2rem;
+        color: var(--extra-light);
+        font-size: 1rem;
+        background-color: transparent;
+        outline: none;
+        border: 2px solid var(--extra-light);
+        border-radius: 2rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button.read__more {
+        background-color: var(--primary-color);
+        color: var(--text-dark);
+      }
+
+      button:hover {
+        background-color: var(--text-light);
+      }
+
+      .section {
+        padding: 5rem 0;
+        max-width: var(--max-width);
+        margin: auto;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 2rem;
+      }
+
+      .problem-statement, .solution-overview, .interactive-section, .benefits-section {
+        background-color: var(--extra-light);
+        padding: 3rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+      }
+
+      .interactive-section .input {
+        display: none; /* Hide the input fields as per your requirement */
+      }
+
+      .interactive-section button {
+        background-color: var(--primary-color);
+        color: var(--text-dark);
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+
+      .footer {
+        background-color: #333;
+        color: var(--extra-light);
+        padding: 2rem 0;
+        text-align: center;
+      }
+      .benefits-section ul li {
+        color: black; /* Change list item text to black */
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">AI Load Management</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Load Profile</a></li>
+        <li><a href="#">AI Solutions</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container">
+      <div class="container__left">
+        <div class="content">
+          <h1>AI-POWERED ENERGY LOAD MANAGEMENT FOR DELHI</h1>
+          <p>Balancing power demand with AI and real-time data. See how AI is optimizing energy management to handle Delhi's unique load challenges.</p>
+          <div class="btns">
+            <button class="read__more" onclick="window.location.href='/listings';">Explore AI Solutions</button>
+            <button class="our__blogs" onclick="window.location.href='/contact';">Contact Us</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem Statement Section -->
+    <section class="section problem-statement">
+      <h2 class="section-title">The Unique Power Load Challenges in Delhi</h2>
+      <p>Delhi’s energy demand fluctuations are driven by extreme weather changes, daily usage patterns, and the integration of renewable energy like solar power. The increasing reliance on solar energy has introduced the "Duck Curve" effect, where energy production dips in the evening while demand peaks, making energy distribution challenging. In addition to this, rapid urbanization and the rising popularity of electric vehicles are expected to further strain the energy grid. Optimizing energy management through AI is becoming crucial to balance demand and supply, prevent inefficiencies, and maintain grid stability.</p>
+    </section>
+
+    <!-- Solution Overview Section -->
+    <section class="section solution-overview">
+      <h2 class="section-title">How AI Optimizes Power Load Management</h2>
+      <p>The AI model uses real-time weather data, historical load patterns, and regional growth to predict and adjust energy demands. It provides precise power purchase solutions to balance demand efficiently, reducing energy wastage and optimizing supply chains.</p>
+    </section>
+
+    <!-- Interactive Load Prediction (Button Only) -->
+    <section class="section interactive-section">
+      <h2 class="section-title">Interactive Load Prediction</h2>
+      <p>Explore AI's power load prediction. Click the button below to view a real-time load predictor.</p>
+      <a href="/load-predictor">
+        <button type="button">View Load Predictor</button>
+      </a>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits-section">
+      <h2 class="section-title">Benefits of AI-Based Load Management</h2>
+      <ul>
+        <li>Cost savings through optimized energy purchases</li>
+        <li>Better integration of renewable energy sources</li>
+        <li>Reliable power supply during peak hours</li>
+        <li>Scalability for future growth in Delhi</li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+  </body>
+</html>
